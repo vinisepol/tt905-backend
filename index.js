@@ -12,7 +12,8 @@ app.listen(process.env.PORT || 3000);
 capitais = [{"Nome":"Rio Branco","Estado":"Acre", "Sigla":"AC"},
             {"Nome":"Maceió","Estado":"Alagoas", "Sigla":"AL"},
             {"Nome":"Macapá","Estado":"Amapá", "Sigla":"AP"},
-            {"Nome":"Manaus","Estado":"Amazonas", "Sigla":"AM"}];
+            {"Nome":"Manaus","Estado":"Amazonas", "Sigla":"AM"},
+            {"Nome":"Salvador","Estado":"Bahia", "Sigla":"BA"}];
 
 app.get('/capitais',
     function(req, res){
