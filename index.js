@@ -9,65 +9,54 @@ app.use(cors());
 // Porta que eu estou ouvindo
 app.listen(process.env.PORT || 3000);
 
-app.get('/', 
-    function (req, res){    
-        res.send("Hello World");
-    }
-);
+capitais = [{"Nome":"Rio Branco","Estado":"Acre", "Sigla":"AC"},
+            {"Nome":"Maceió","Estado":"Alagoas", "Sigla":"AL"},
+            {"Nome":"Macapá","Estado":"Amapá", "Sigla":"AP"},
+            {"Nome":"Manaus","Estado":"Amazonas", "Sigla":"AM"}];
 
-app.get('/hello',
-function (req, res){    
-    res.send("Hello de Novo");
-    }
-)
-
-const mensagens = [
-    "Elziele da Rocha", "Lucas Canova dos Santos", 0 
-];
-
-app.get('/mensagens',
+app.get('/capitais',
     function(req, res){
-        // res.send(mensagens);
-        res.send(mensagens.filter(Boolean));
+        // res.send(capitais);
+        res.send(capitais.filter(String));
     }
 );
 
-app.get('/mensagens/:id',
+app.get('/capitais/:id',
     function(req, res){
         const id = req.params.id - 1;
-        const mensagem = mensagens[id];
+        const capital = capitais[id];
 
-        if (!mensagem){
-            res.send("Mensagem não encontrada");
+        if (!capital){
+            res.send("capital não encontrada");
         } else {
-            res.send(mensagem);
+            res.send(capital);
         }
     }
 )
 
-app.post('/mensagens', 
+app.post('/capitais', 
     (req, res) => {
-        console.log(req.body.mensagem);
-        const mensagem = req.body.mensagem;
-        mensagens.push(mensagem);
-        res.send("criar uma mensagem.")
+        console.log(req.body.capital);
+        const capital = req.body.capital;
+        capitais.push(capital);
+        res.send("criar uma capital.")
     }
 );
 
-app.put('/mensagens/:id',
+app.put('/capitais/:id',
     (req, res) => {
         const id = req.params.id - 1;
-        const mensagem = req.body.mensagem;
-        mensagens[id] = mensagem;        
-        res.send("Mensagem atualizada com sucesso.")
+        const capital = req.body.capital;
+        capitais[id] = capital;        
+        res.send("capital atualizada com sucesso.")
     }
 )
 
-app.delete('/mensagens/:id', 
+app.delete('/capitais/:id', 
     (req, res) => {
         const id = req.params.id - 1;
-        delete mensagens[id];
+        delete capitais[id];
 
-        res.send("Mensagem removida com sucesso");
+        res.send("capital removida com sucesso");
     }
 );
